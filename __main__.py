@@ -4,12 +4,22 @@ pygame.init()
 f = 1
 
 pygame.key.set_repeat(100, 100)
+block = pygame.image.load('cartinki/block 1.png')
 
+ok=pygame.Rect(100,100,300,150)
+
+# block=pygame.transform.scale(block,[settings.BLOCK_WIDTH,settings.BLOCK_HEIGHT])
+block = pygame.transform.scale(block, [32, 32])
 speedy = 1
 speedx = 1
 screen = pygame.display.set_mode([settings.SCREEN_WIDTH, settings.SCREEN_HEIGHT])
-rect = pygame.Rect(70, 400, 200, 20)
-w = pygame.Rect(200, 200, 40, 40)
+
+pygame.display.set_icon(block)
+pygame.display.set_caption('arcanoid')
+
+rect = pygame.Rect(50, 400, 200, 20)
+rect.centerx=settings.SCREEN_WIDTH/2
+w = pygame.Rect(70, 300, 40, 40)
 while 1 < 10:
 
     # задержа
@@ -20,14 +30,14 @@ while 1 < 10:
 
     for e in coffin_dance:
         if e.type == pygame.MOUSEMOTION:
-            #в право
-            sdvigx=e.pos[0]-rect.centerx
+            # в право
+            sdvigx = e.pos[0] - rect.centerx
             if sdvigx >= 1:
                 rect.x += sdvigx
                 e1 = rect.colliderect(w)
                 if e1 == 1:
                     rect.right = w.left
-            #в лево
+            # в лево
             if sdvigx <= -1:
                 rect.x -= 20
                 e1 = rect.colliderect(w)
@@ -64,10 +74,10 @@ while 1 < 10:
         rect.y = 0
     if rect.x < 0:
         rect.x = 0
-    if rect.right > 800:
-        rect.right = 800
-    if rect.bottom > 700:
-        rect.bottom = 700
+    if rect.right > settings.SCREEN_WIDTH:
+        rect.right = settings.SCREEN_WIDTH
+    if rect.bottom > settings.SCREEN_HEIGHT:
+        rect.bottom = settings.SCREEN_HEIGHT
 
     # движение шарика
     w.x += speedx
@@ -110,6 +120,8 @@ while 1 < 10:
     pygame.draw.rect(screen, [100, 250, 200], [0, 0, 1300, 700], 0)
 
     # pygame.draw.rect(screen, [0, 0, 0], w, 0)
+
+    pygame.draw.rect(screen, [100, 200, 50],ok)
 
     pygame.draw.rect(screen, [f % 250, f % 200, f % 10], rect, 0)
 
