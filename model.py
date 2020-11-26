@@ -1,68 +1,68 @@
-import pygame, time, random, settings
+import pygame, settings
 
-#подготовка модэли
+# подготовка модэли
 ok = pygame.Rect(100, 100, 300, 150)
 
-rect = pygame.Rect(50, 400, 200, 20)
-rect.centerx = settings.SCREEN_WIDTH / 2
-w = pygame.Rect(70, 300, 40, 40)
+platforma = pygame.Rect(50, 400, 200, 20)
+platforma.centerx = settings.SCREEN_WIDTH / 2
+krug = pygame.Rect(70, 300, 40, 40)
 
 speedy = 1
 speedx = 1
 
+
 def platformirovanie():
-    rect.x += 20
-    e1 = rect.colliderect(w)
+    platforma.x += 20
+    e1 = platforma.colliderect(krug)
     if e1 == 1:
-        rect.right = w.left
+        platforma.right = krug.left
 
 
 def dvizhenie():
-
-    global speedx,speedy
+    global speedx, speedy
 
     # границы для прямоуголльника 1
-    if rect.y < 0:
-        rect.y = 0
-    if rect.x < 0:
-        rect.x = 0
-    if rect.right > settings.SCREEN_WIDTH:
-        rect.right = settings.SCREEN_WIDTH
-    if rect.bottom > settings.SCREEN_HEIGHT:
-        rect.bottom = settings.SCREEN_HEIGHT
+    if platforma.y < 0:
+        platforma.y = 0
+    if platforma.x < 0:
+        platforma.x = 0
+    if platforma.right > settings.SCREEN_WIDTH:
+        platforma.right = settings.SCREEN_WIDTH
+    if platforma.bottom > settings.SCREEN_HEIGHT:
+        platforma.bottom = settings.SCREEN_HEIGHT
 
     # движение шарика
-    w.x += speedx
+    krug.x += speedx
 
     # грницы для круга
-    if w.right > settings.SCREEN_WIDTH:
-        w.right = settings.SCREEN_WIDTH
+    if krug.right > settings.SCREEN_WIDTH:
+        krug.right = settings.SCREEN_WIDTH
         speedx = -7
-    if w.x < 0:
-        w.x = 0
+    if krug.x < 0:
+        krug.x = 0
         speedx = 7
 
     # твердый прямоугольник
-    e1 = rect.colliderect(w)
+    e1 = platforma.colliderect(krug)
     if e1 == 1 and speedx > 0:
         speedx = - 7
-        w.right = rect.x
+        krug.right = platforma.x
     elif e1 == 1 and speedx < 0:
         speedx = 7
-        w.x = rect.right
+        krug.x = platforma.right
 
-    w.y += speedy
-    if w.bottom > settings.SCREEN_HEIGHT:
-        w.bottom = settings.SCREEN_HEIGHT
+    krug.y += speedy
+    if krug.bottom > settings.SCREEN_HEIGHT:
+        krug.bottom = settings.SCREEN_HEIGHT
         speedy = - 7
-    if w.top < 0:
-        w.top = 0
+    if krug.top < 0:
+        krug.top = 0
         speedy = 7
 
-    e1 = rect.colliderect(w)
+    e1 = platforma.colliderect(krug)
     if e1 == 1 and speedy > 0:
         speedy = - 7
-        w.bottom = rect.y
+        krug.bottom = platforma.y
     elif e1 == 1 and speedy < 0:
         speedy = 7
-        w.y = rect.bottom
+        krug.y = platforma.bottom
