@@ -24,10 +24,7 @@ def obrabotca_sobitiy():
         if e.type == pygame.KEYDOWN:
 
             if e.key == pygame.K_RIGHT:
-                model.platformirovanie()
+                model.platforma_right()
 
             if e.key == pygame.K_LEFT:
-                model.platforma.x -= 20
-                e1 = model.platforma.colliderect(model.krug)
-                if e1 == 1:
-                    model.platforma.left = model.krug.right
+                model.platforma_left()

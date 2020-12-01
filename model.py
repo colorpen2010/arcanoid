@@ -11,11 +11,18 @@ speedy = 1
 speedx = 1
 
 
-def platformirovanie():
+def platforma_right():
     platforma.x += 20
     e1 = platforma.colliderect(krug)
     if e1 == 1:
         platforma.right = krug.left
+
+
+def platforma_left():
+    platforma.x -= 20
+    e1 = platforma.colliderect(krug)
+    if e1 == 1:
+        platforma.left = krug.right
 
 
 def dvizhenie():
@@ -43,13 +50,10 @@ def dvizhenie():
         speedx = 7
 
     # твердый прямоугольник
-    e1 = platforma.colliderect(krug)
-    if e1 == 1 and speedx > 0:
-        speedx = - 7
-        krug.right = platforma.x
-    elif e1 == 1 and speedx < 0:
-        speedx = 7
-        krug.x = platforma.right
+
+    otbivka_left_right(ok)
+
+    otbivka_left_right(platforma)
 
     krug.y += speedy
     if krug.bottom > settings.SCREEN_HEIGHT:
@@ -59,10 +63,28 @@ def dvizhenie():
         krug.top = 0
         speedy = 7
 
-    e1 = platforma.colliderect(krug)
+    otbivka_top_bottom(platforma)
+
+    otbivka_top_bottom(ok)
+
+def otbivka_left_right(block):
+    global speedx, speedy
+    e1 = block.colliderect(krug)
+    if e1 == 1 and speedx > 0:
+        speedx = - 7
+        krug.right = block.x
+    elif e1 == 1 and speedx < 0:
+        speedx = 7
+        krug.x = block.right
+
+
+def otbivka_top_bottom(block):
+    global speedx, speedy
+
+    e1 = block.colliderect(krug)
     if e1 == 1 and speedy > 0:
         speedy = - 7
-        krug.bottom = platforma.y
+        krug.bottom = block.y
     elif e1 == 1 and speedy < 0:
         speedy = 7
-        krug.y = platforma.bottom
+        krug.y = block.bottom
