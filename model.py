@@ -1,8 +1,10 @@
 import pygame, settings
 
 # подготовка модэли
-ok = pygame.Rect(100, 100, 300, 150)
-
+blocks=[]
+blocks.append(pygame.Rect(100, 100, 300, 150))
+blocks.append(pygame.Rect(500,200,150,150))
+blocks.append(pygame.Rect(30,100,250,200))
 platforma = pygame.Rect(50, 400, 200, 20)
 platforma.centerx = settings.SCREEN_WIDTH / 2
 krug = pygame.Rect(70, 300, 40, 40)
@@ -51,7 +53,7 @@ def dvizhenie():
 
     # твердый прямоугольник
 
-    otbivka_left_right(ok)
+    # otbivka_left_right(ok)
 
     otbivka_left_right(platforma)
 
@@ -65,7 +67,7 @@ def dvizhenie():
 
     otbivka_top_bottom(platforma)
 
-    otbivka_top_bottom(ok)
+    # otbivka_top_bottom(ok)
 
 def otbivka_left_right(block):
     global speedx, speedy
