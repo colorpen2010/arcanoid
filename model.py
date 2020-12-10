@@ -52,8 +52,8 @@ def dvizhenie():
         speedx = 7
 
     # твердый прямоугольник
-
-    # otbivka_left_right(ok)
+    for army in blocks:
+        otbivka_left_right(army)
 
     otbivka_left_right(platforma)
 
@@ -67,7 +67,8 @@ def dvizhenie():
 
     otbivka_top_bottom(platforma)
 
-    # otbivka_top_bottom(ok)
+    for army in blocks:
+        otbivka_top_bottom(army)
 
 def otbivka_left_right(block):
     global speedx, speedy

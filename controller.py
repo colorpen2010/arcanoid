@@ -1,4 +1,4 @@
-import pygame, model
+import pygame, model,risovanie
 
 
 def obrabotca_sobitiy():
@@ -28,3 +28,9 @@ def obrabotca_sobitiy():
 
             if e.key == pygame.K_LEFT:
                 model.platforma_left()
+
+        if e.type == pygame.MOUSEBUTTONDOWN:
+
+            if e.button==1:
+                if risovanie.exit_rect.collidepoint(e.pos):
+                    exit()
